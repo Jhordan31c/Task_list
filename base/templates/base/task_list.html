@@ -1,0 +1,52 @@
+{% extends 'base/main.html' %}
+{% block content  %}
+<div class="Top-bar">
+    <div>
+        <h1>
+            Hello {{request.user|title}}
+        </h1>
+        <h3 style="margin:0" > You do have <i>{{count}}</i> incomplete task{{count|pluralize}}</h3>
+    </div>
+    {%if request.user.is_authenticated%}
+    <a href="{% url 'logout' %}"> Go out </a>
+    {% else %}
+    <a href="{% url 'login' %}"> Get into</a>
+    {% endif %}
+</div>
+
+<div id="wrapping-add-search">
+    <form method="GET" style="margin-top: 20px; display:flex;">
+        <input type="text" name="Search-Area" value="{{value_searched}}">
+        <input class="button" type="submit" value="Search">
+    </form>
+    <a id="link-add" href="{% url 'create-task' %}"> &#x271B; </a>
+</div>
+
+
+<div class="wrapping-items-task">
+    {%for task in tasks%}
+    <div class="wrapping-task">
+        {% if task.complete %}
+        <div class="title-task">
+            <div class="icon-task-complete"></div>
+                <i>
+                    <s><a href="{% url 'update-task' task.id %}">{{task}}</a></s>
+                </i>
+        </div>
+        <a class="link-delete" href="{% url 'delete-task' task.id %}">&#x292B;</a>
+        {% else %}
+        <div class="title-task">
+            <div class="icon-task-incomplete"> </div>
+                <a href="{% url 'update-task' task.id %}">{{task}}</a>
+        </div>
+        <a class="link-delete" href="{% url 'delete-task' task.id %}">&#x292B;</a>
+        {% endif %}
+    </div>
+
+
+    {% empty %}
+    <h3>There aren't items in this list</h3>
+    {% endfor %}
+</div>
+
+{% endblock content  %}

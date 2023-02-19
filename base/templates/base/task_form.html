@@ -1,0 +1,15 @@
+{% extends 'base/main.html' %}
+{% block content  %}
+
+<div class="Top-bar">
+    <a href="{% url 'slope' %}"> &#x2936; Return </a>
+</div>
+<div class="body-card">
+    <form method="POST" action="">
+      {% csrf_token %}
+      {{form.as_p}}
+     <input class="button" type="submit" value="Send">
+    </form>
+</div>
+
+{% endblock content  %}
