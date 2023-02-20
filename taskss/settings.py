@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'taskss.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/Jhordanthirty/Documents/Python/My_environments/My_page/src/project/base/templates'],
+        'DIRS': ['C:/Users/Jhordanthirty/Documents/My_page/base/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
