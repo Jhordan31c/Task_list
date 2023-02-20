@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 import os
 import sys
 
+sys.path.append('/My_page/taskss')
+
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taskss.settings') # or project.settings
